@@ -53,3 +53,29 @@ btnScroll.addEventListener('click', function(){
 // setTimeout(function(){
 //   h1.removeEventListener('mouseenter', allertH())
 // }, 4000)
+
+// randomizer
+function randomInteger(min, max){
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function randomColour() {
+  return `rgb(${randomInteger(0, 255)},${randomInteger(0, 255)},${randomInteger(0, 255)})`
+}
+
+const nav = document.querySelector('.nav')
+const navLinkes = document.querySelector('.nav__links')
+const link = document.querySelector('.nav__link')
+
+nav.addEventListener('click', function(){
+  this.style.backgroundColor = randomColour()
+})
+
+navLinkes.addEventListener('click', function(){
+  this.style.backgroundColor = randomColour()
+})
+
+link.addEventListener('click', function(e){
+  this.style.backgroundColor = randomColour()
+  e.stopPropagation()
+})
