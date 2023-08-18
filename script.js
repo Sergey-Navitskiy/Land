@@ -30,5 +30,15 @@ document.addEventListener('keydown', function (e) {
   }
 });
  
-const btmScroll = document.querySelector('.btn--scroll-to')
+const btnScroll = document.querySelector('.btn--scroll-to')
+const section1 = document.querySelector('#section--1')
+
+btnScroll.addEventListener('click', function(){
+  // window.scrollTo({
+  //   left: section1.getBoundingClientRect().left + window.pageXOffset,
+  //   top: section1.getBoundingClientRect().top + window.pageYOffset,
+  //   behavior: 'smooth'
+  // })
+  section1.scrollIntoView({behavior: 'smooth'})
+})
 
