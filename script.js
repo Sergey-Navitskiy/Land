@@ -42,3 +42,14 @@ btnScroll.addEventListener('click', function(){
   section1.scrollIntoView({behavior: 'smooth'})
 })
 
+
+// Убрать обработчик события
+
+// const h1 = document.querySelector('h1')
+// function allerH(){
+//   allert('hello mff!!!')
+// }
+
+// setTimeout(function(){
+//   h1.removeEventListener('mouseenter', allertH())
+// }, 4000)
