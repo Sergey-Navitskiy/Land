@@ -95,3 +95,20 @@ document.querySelector('.nav__links').addEventListener('click', function(e){
     document.querySelector(id).scrollIntoView({behavior: 'smooth'})
   }
 })
+
+
+const tabs = document.querySelectorAll('.operations__tab')
+const tabconteiner = document.querySelector('.operations__tab-container')
+const tabcont = document.querySelectorAll('.operations__content')
+
+tabconteiner.addEventListener('click', function(e){
+  e.preventDefault()
+  const  clicked = e.target.closest('.operation__tab')
+  
+  if(!clicked) return
+  tabs.forEach((tab) => tab.classList.remove('operations__tab--active'))
+  clicked.classList.add('operations__tab--active')
+  tabcont.forEach((tab) => tab.classList.remove('operations__content--active'))
+
+  document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active')
+})
