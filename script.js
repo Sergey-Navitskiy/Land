@@ -55,27 +55,43 @@ btnScroll.addEventListener('click', function(){
 // }, 4000)
 
 // randomizer
-function randomInteger(min, max){
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
+// function randomInteger(min, max){
+//   return Math.floor(Math.random() * (max - min + 1) + min)
+// }
 
-function randomColour() {
-  return `rgb(${randomInteger(0, 255)},${randomInteger(0, 255)},${randomInteger(0, 255)})`
-}
+// function randomColour() {
+//   return `rgb(${randomInteger(0, 255)},${randomInteger(0, 255)},${randomInteger(0, 255)})`
+// }
 
-const nav = document.querySelector('.nav')
-const navLinkes = document.querySelector('.nav__links')
-const link = document.querySelector('.nav__link')
+// const nav = document.querySelector('.nav')
+// const navLinkes = document.querySelector('.nav__links')
+// const link = document.querySelector('.nav__link')
 
-nav.addEventListener('click', function(){
-  this.style.backgroundColor = randomColour()
-})
+// nav.addEventListener('click', function(){
+//   this.style.backgroundColor = randomColour()
+// })
 
-navLinkes.addEventListener('click', function(){
-  this.style.backgroundColor = randomColour()
-})
+// navLinkes.addEventListener('click', function(){
+//   this.style.backgroundColor = randomColour()
+// })
 
-link.addEventListener('click', function(e){
-  this.style.backgroundColor = randomColour()
-  e.stopPropagation()
+// link.addEventListener('click', function(e){
+//   this.style.backgroundColor = randomColour()
+//   e.stopPropagation( )
+// })
+
+// document.querySelectorAll('.nav__link').forEach(function(ell){
+//   ell.addEventListener('click', function(e){
+//     e.preventDefault()
+//     const id = this.getAttribute('href')
+//     document.querySelector(id).scrollIntoView({behavior: 'smooth'})
+//   })
+// })
+
+document.querySelector('.nav__links').addEventListener('click', function(e){
+  e.preventDefault()
+  if(e.target.classList.contains('nav__link')){
+    const id = e.target().getAttribute('href')
+    document.querySelector(id).scrollIntoView({behavior: 'smooth'})
+  }
 })
