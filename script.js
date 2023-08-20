@@ -102,3 +102,27 @@ tabconteiner.addEventListener('click', function(e){
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add("operations__content--active");
 })
+
+function hover(e, opacity){
+  if(e.target.classList.contains('nav__link')) {
+    const link = e.target
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link')
+    const logo = link.closest('.nav').querySelector('.nav__logo')
+
+    siblings.forEach(function(el){
+      if(el !== link){
+        el.style.opacity = opacity
+      }
+
+    })
+    logo.style.opacity = opacity
+  }
+}
+
+nav.addEventListener('mouseover', function(e){
+  hover(e, 0.5)
+})
+
+nav.addEventListener('mouseout', function(e){
+  hover(e, 1)
+})
