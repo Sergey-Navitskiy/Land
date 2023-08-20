@@ -63,23 +63,6 @@ btnScroll.addEventListener('click', function(){
 //   return `rgb(${randomInteger(0, 255)},${randomInteger(0, 255)},${randomInteger(0, 255)})`
 // }
 
-// const nav = document.querySelector('.nav')
-// const navLinkes = document.querySelector('.nav__links')
-// const link = document.querySelector('.nav__link')
-
-// nav.addEventListener('click', function(){
-//   this.style.backgroundColor = randomColour()
-// })
-
-// navLinkes.addEventListener('click', function(){
-//   this.style.backgroundColor = randomColour()
-// })
-
-// link.addEventListener('click', function(e){
-//   this.style.backgroundColor = randomColour()
-//   e.stopPropagation( )
-// })
-
 // document.querySelectorAll('.nav__link').forEach(function(ell){
 //   ell.addEventListener('click', function(e){
 //     e.preventDefault()
@@ -87,28 +70,35 @@ btnScroll.addEventListener('click', function(){
 //     document.querySelector(id).scrollIntoView({behavior: 'smooth'})
 //   })
 // })
+const nav = document.querySelector(".nav__links");
 
-document.querySelector('.nav__links').addEventListener('click', function(e){
-  e.preventDefault()
-  if(e.target.classList.contains('nav__link')){
-    const id = e.target().getAttribute('href')
-    document.querySelector(id).scrollIntoView({behavior: 'smooth'})
+nav.addEventListener("click", function (e) {
+  e.preventDefault();
+  console.log(e.target); // Вернет дочерний элемент на который нажали
+  if (e.target.classList.contains("nav__link")) {
+    const id = e.target.getAttribute("href");
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   }
-})
+});
 
 
-const tabs = document.querySelectorAll('.operations__tab')
+const tab = document.querySelectorAll('.operations__tab')
 const tabconteiner = document.querySelector('.operations__tab-container')
 const tabcont = document.querySelectorAll('.operations__content')
 
 tabconteiner.addEventListener('click', function(e){
   e.preventDefault()
-  const  clicked = e.target.closest('.operation__tab')
-  
-  if(!clicked) return
-  tabs.forEach((tab) => tab.classList.remove('operations__tab--active'))
-  clicked.classList.add('operations__tab--active')
-  tabcont.forEach((tab) => tab.classList.remove('operations__content--active'))
+  const clicked = e.target.closest('.operations__tab')
+  console.log(clicked)
 
-  document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active')
+  if(!clicked) return
+
+  tab.forEach((tab) => tab.classList.remove('operations__tab--active'))
+  clicked.classList.add('operations__tab--active')
+  tabcont.forEach((content) => content.classList.remove('operations__content--active'))
+
+  console.log(clicked.dataset.tab);
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add("operations__content--active");
 })
