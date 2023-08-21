@@ -127,12 +127,16 @@ nav.addEventListener('mouseout', function(e){
   hover(e, 1)
 })
 
+
+
+//навигационное меню везде
 const navContainer = document.querySelector('.nav')
 const coords = section1.getBoundingClientRect()
 
 function callBack(entries, observer) {
   if(!entries[0].isIntersecting) {
     navContainer.classList.add('sticky')
+    observer.unobserve(entries[0].target)
   } else {
     navContainer.classList.remove('sticky')
   }
@@ -146,3 +150,19 @@ const options = {
 const observer = new IntersectionObserver(callBack, options)
 
 observer.observe(document.querySelector('.header'))
+
+const allSections = document.querySelectorAll('.section')
+
+function revealSection(entries, observe){
+  if(entries[0].isIntersecting){
+    entries[0].target.classList.remove('section--hidden')
+    observe.unobserve(entries[0].target)
+  }
+  
+}
+const sectionObserver = new IntersectionObserver(revealSection, {threshold: 0.15})
+
+allSections.forEach(function(section){
+  sectionObserver.observe(section)
+  section.classList.add('section--hidden')
+})
