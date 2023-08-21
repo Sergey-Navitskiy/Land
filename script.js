@@ -126,3 +126,23 @@ nav.addEventListener('mouseover', function(e){
 nav.addEventListener('mouseout', function(e){
   hover(e, 1)
 })
+
+const navContainer = document.querySelector('.nav')
+const coords = section1.getBoundingClientRect()
+
+function callBack(entries, observer) {
+  if(!entries[0].isIntersecting) {
+    navContainer.classList.add('sticky')
+  } else {
+    navContainer.classList.remove('sticky')
+  }
+}
+
+const options = {
+  treshhold: 0.1,
+  rootMargin: '-90px',
+}
+
+const observer = new IntersectionObserver(callBack, options)
+
+observer.observe(document.querySelector('.header'))
