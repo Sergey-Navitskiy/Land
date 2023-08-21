@@ -136,10 +136,11 @@ const coords = section1.getBoundingClientRect()
 function callBack(entries, observer) {
   if(!entries[0].isIntersecting) {
     navContainer.classList.add('sticky')
-    observer.unobserve(entries[0].target)
   } else {
     navContainer.classList.remove('sticky')
+    // observer.unobserve(entries[0].target)
   }
+  
 }
 
 const options = {
@@ -147,6 +148,7 @@ const options = {
   rootMargin: '-90px',
 }
 
+// подгрузка секций 
 const observer = new IntersectionObserver(callBack, options)
 
 observer.observe(document.querySelector('.header'))
@@ -165,4 +167,23 @@ const sectionObserver = new IntersectionObserver(revealSection, {threshold: 0.15
 allSections.forEach(function(section){
   sectionObserver.observe(section)
   section.classList.add('section--hidden')
+})
+
+// подгрузка изображений
+const images = document.querySelectorAll('img[data-src]')
+
+
+function loadImg(entries, observe){
+  entries[0].target.src = entries[0].target.dataset.src
+  if (!entries[0].isIntersecting) return
+
+  entries[0].target.addEventListener('load', function(){
+    entries[0].target.classList.remove('lazy-img')
+  })
+  observe.unobserve(entries[0].target)
+}
+const imgObserver = new IntersectionObserver(loadImg, {treshhold: 0.15})
+
+img.forEach(img => {
+  img.observe.observe(img)
 })
