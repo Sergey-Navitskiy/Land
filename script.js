@@ -174,16 +174,17 @@ const images = document.querySelectorAll('img[data-src]')
 
 
 function loadImg(entries, observe){
-  entries[0].target.src = entries[0].target.dataset.src
   if (!entries[0].isIntersecting) return
+  entries[0].target.src = entries[0].target.dataset.src
+  
 
-  entries[0].target.addEventListener('load', function(){
+  entries[0].target.addEventListener('load', function() {
     entries[0].target.classList.remove('lazy-img')
   })
   observe.unobserve(entries[0].target)
 }
-const imgObserver = new IntersectionObserver(loadImg, {treshhold: 0.15})
+const imgObserver = new IntersectionObserver(loadImg, {threshold: 0.15})
 
-img.forEach(img => {
-  img.observe.observe(img)
+images.forEach(img => {
+  imgObserver.observe(img)
 })
