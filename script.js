@@ -188,3 +188,43 @@ const imgObserver = new IntersectionObserver(loadImg, {threshold: 0.15})
 images.forEach(img => {
   imgObserver.observe(img)
 })
+
+//слайдер 
+
+const slides = document.querySelectorAll('.slide')
+const slider = document.querySelector('.slider')
+const btnRight = document.querySelector('.slider__btn--right')
+let currentSlide = 0
+const maxSlides = slides.length
+const btnLeft = document.querySelector('.slider__btn--left')
+
+function goToSlide(slide) {
+  slides.forEach(function(s, i){
+    s.style.transform = `translateX${100 * (i - slide)}`
+  })  
+}
+
+goToSlide(0)
+
+function nextSlide() {
+  if(currentSlide === maxSlides - 1) {
+    currentSlide = 0
+  } else {
+    currentSlide++
+  }
+  goToSlide(currentSlide)
+}
+
+function prevSlide() {
+  if(currentSlide === 0) {
+    currentSlide = maxSlides - 1 
+  } else {
+    currentSlide--
+  }
+  
+  goToSlide(currentSlide)
+}
+
+btnRight.addEventListener('click', nextSlide)
+
+btnLeft.addEventListener('click', prevSlide)
