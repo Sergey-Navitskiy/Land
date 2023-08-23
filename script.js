@@ -203,7 +203,7 @@ const maxSlides = slides.length
 function createdots(){
   slides.forEach(function(_, i){
     dotsContainer.insertAdjacentHTML('beforeend',`
-    <button class="dots__dot" data-slide="${i}"></button>>
+    <button class="dots__dot" data-slide="${i}"</button>
     `)
   })
 }
