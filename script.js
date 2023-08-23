@@ -191,16 +191,19 @@ images.forEach(img => {
 
 //слайдер 
 
-const slides = document.querySelectorAll('.slide')
-const slider = document.querySelector('.slider')
-const btnRight = document.querySelector('.slider__btn--right')
+const slides = document.querySelectorAll(".slide");
+const slider = document.querySelector(".slider");
+const btnRight = document.querySelector(".slider__btn--right");
+const btnLeft = document.querySelector(".slider__btn--left");
+const dotsContainer = document.querySelector(".dots");
+
 let currentSlide = 0
 const maxSlides = slides.length
-const btnLeft = document.querySelector('.slider__btn--left')
+
 
 function goToSlide(slide) {
   slides.forEach(function(s, i){
-    s.style.transform = `translateX${100 * (i - slide)}`
+    s.style.transform = `translateX(${100 * (i - slide)}%)`
   })  
 }
 
